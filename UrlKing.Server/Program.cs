@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using UrlKing.Server.DbContext;
 using UrlKing.Server.Repository.IRepository;
 using UrlKing.Server.Repository;
+using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
+using UrlKing.Server.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,9 @@ builder.Services
         .AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
         .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+IMapper mapper = MapperConfig.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(cfg => cfg.AddMaps(AppDomain.CurrentDomain.GetAssemblies()));
 
 // Add services to the container.
 

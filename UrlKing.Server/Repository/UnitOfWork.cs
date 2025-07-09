@@ -26,9 +26,9 @@ namespace UrlKing.Server.Repository
 		public IShortenedUrlRepository ShortenedUrlRepository { get; private set; }
 		public IAboutContentRepository AboutContentRepository { get; private set; }
 
-		public void Save()
+		public async Task SaveAsync()
 		{
-			_db.SaveChanges();
+			await _db.SaveChangesAsync();
 		}
 	}
 }

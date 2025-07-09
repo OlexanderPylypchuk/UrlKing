@@ -6,6 +6,6 @@
 		IShortenedUrlRepository ShortenedUrlRepository { get; }
 		IAboutContentRepository AboutContentRepository { get; }
 
-		void Save();
+		Task SaveAsync();
 	}
 }

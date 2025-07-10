@@ -12,7 +12,8 @@ namespace UrlKing.Server.Utility
 			{
 				config.CreateMap<ShortenedUrl, ShortenedUrlDto>().ReverseMap();
 				config.CreateMap<AboutContent, AboutContentDto>().ReverseMap();
-			}, null);
+				config.CreateMap<UserDto, ApplicationUser>().ReverseMap();
+			});
 			return mapping;
 		}
 	}

@@ -141,7 +141,7 @@ namespace UrlKing.Server.Controllers
 					return NotFound($"URL with code '{code}' not found.");
 				}
 
-				if(url.UserId != User.FindFirstValue(ClaimTypes.NameIdentifier) || !User.IsInRole(SD.RoleAdmin))
+				if (url.UserId != User.FindFirstValue(ClaimTypes.Name) && !User.IsInRole(SD.RoleAdmin))
 				{
 					return Forbid("You do not have permission to delete this URL.");
 				}

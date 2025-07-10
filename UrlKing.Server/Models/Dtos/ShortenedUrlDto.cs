@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace UrlKing.Server.Models.Dtos
+﻿namespace UrlKing.Server.Models.Dtos
 {
 	public class ShortenedUrlDto
 	{

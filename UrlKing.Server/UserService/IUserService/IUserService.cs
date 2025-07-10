@@ -1,0 +1,14 @@
+﻿using UrlKing.Server.Models.Dtos;
+
+namespace UrlKing.Server.UserService.IUserService
+{
+	public interface IUserService
+	{
+		Task<IEnumerable<UserDto>> GetUsersAsync();
+		Task<UserDto> GetUserAsync(string username);
+		bool IsUniqueUser(string username);
+		Task<TokenDto> Login(LoginRequestDto loginRequestDto);
+		Task<UserDto> Register(RegistrationRequestDto registrationRequestDto);
+		Task<UserDto> AssignUserToRole(RegistrationRequestDto registrationRequestDto);
+	}
+}

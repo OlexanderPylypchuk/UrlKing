@@ -1,6 +1,6 @@
 ﻿using UrlKing.Server.Models.Dtos;
 
-namespace UrlKing.Server.UserService.IUserService
+namespace UrlKing.Server.Services.IServices
 {
 	public interface IUserService
 	{

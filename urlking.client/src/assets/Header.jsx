@@ -14,8 +14,7 @@ function Header() {
                     URL Shortener
                 </a>
                 <nav className="flex space-x-4 text-sm text-gray-700">
-                    <a href="/url" className="hover:text-blue-500">URL</a>
-                    <a href="/about" className="hover:text-blue-500">About</a>
+                    <a href="/" className="hover:text-blue-500">About</a>
                 </nav>
             </div>
 

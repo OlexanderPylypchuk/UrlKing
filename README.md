@@ -65,7 +65,7 @@ The API will be available at `https://localhost:7173`.
 
 #### Get Original URL
 
-* **GET** `/api/:code`
+* **GET** `/api/url/:code`
 * **Response**:
 
   ```json
@@ -80,7 +80,7 @@ The API will be available at `https://localhost:7173`.
 
 #### Delete Short URL
 
-* **DELETE** `/api/:code`
+* **DELETE** `/api/url/:code`
 * **Response**: `200 Ok`
 
 ---

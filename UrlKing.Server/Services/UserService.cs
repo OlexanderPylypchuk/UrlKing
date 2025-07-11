@@ -62,12 +62,12 @@ namespace UrlKing.Server.Services
 			var accessToken = await GetAcessTokenAsync(user, tokenid);
 
 
-			TokenDto tokendtoDto = new TokenDto()
+			TokenDto tokenDto = new TokenDto()
 			{
 				AccessToken = accessToken,
 				User = _mapper.Map<UserDto>(user),
 			};
-			return tokendtoDto;
+			return tokenDto;
 		}
 
 		private async Task<string> GetAcessTokenAsync(ApplicationUser applicationUser, string tokenid)
@@ -94,7 +94,7 @@ namespace UrlKing.Server.Services
 			return tokenhandler.WriteToken(token);
 		}
 
-		public async Task<UserDto> Register(RegistrationRequestDto registrationRequestDto)
+		public async Task<TokenDto> Register(RegistrationRequestDto registrationRequestDto)
 		{
 			ApplicationUser user = new()
 			{
@@ -115,7 +115,17 @@ namespace UrlKing.Server.Services
 					}
 					await _userManager.AddToRoleAsync(user, SD.RoleUser);
 					var userToReturn = _db.Users.FirstOrDefault(u => u.UserName == registrationRequestDto.UserName);
-					return _mapper.Map<UserDto>(userToReturn);
+
+					var tokenid = $"JWI{Guid.NewGuid()}";
+					var accessToken = await GetAcessTokenAsync(user, tokenid);
+
+
+					TokenDto tokenDto = new TokenDto()
+					{
+						AccessToken = accessToken,
+						User = _mapper.Map<UserDto>(userToReturn),
+					};
+					return tokenDto;
 				}
 			}
 			catch (Exception ex)

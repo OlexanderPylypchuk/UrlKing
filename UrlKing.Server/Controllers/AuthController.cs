@@ -59,7 +59,7 @@ namespace UrlKing.Server.Controllers
 		public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
 		{
 			var tokendto = await _userService.Login(model);
-			if (tokendto == null || string.IsNullOrEmpty(tokendto.AccessToken))
+			if (tokendto == null || string.IsNullOrWhiteSpace(tokendto.AccessToken))
 			{
 				return BadRequest("Username or password is incorrect");
 			}
@@ -74,12 +74,12 @@ namespace UrlKing.Server.Controllers
 			{
 				return BadRequest("Username already exists");
 			}
-			var user = await _userService.Register(model);
-			if (user == null)
+			var tokenDto = await _userService.Register(model);
+			if (tokenDto == null)
 			{
 				return BadRequest("Error while registering");
 			}
-			return Ok();
+			return Ok(tokenDto);
 		}
 
 		[Authorize(Roles = SD.RoleAdmin)]

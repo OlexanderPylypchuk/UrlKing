@@ -15,11 +15,13 @@ namespace UrlKing.Server.Controllers
 	public class UrlController : ControllerBase
 	{
 		private readonly IUnitOfWork _unitOfWork;
+		private string _baseHost;
 		private Random _random;
 
-		public UrlController(IUnitOfWork unitOfWork)
+		public UrlController(IUnitOfWork unitOfWork, IConfiguration configuration)
 		{
 			_unitOfWork = unitOfWork;
+			_baseHost = configuration.GetValue<string>("BaseHost") ?? "localhost:7173";
 			_random = new Random();
 		}
 
@@ -65,7 +67,7 @@ namespace UrlKing.Server.Controllers
 
 		[Authorize]
 		[HttpPost]
-		public async Task<IActionResult> CreateUrl(string url)
+		public async Task<IActionResult> CreateUrl([FromBody]string url)
 		{
 			try
 			{
@@ -90,7 +92,7 @@ namespace UrlKing.Server.Controllers
 				{
 					Code = code,
 					LongUrl = url,
-					ShortUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/shorturl/{code}", 
+					ShortUrl = $"{HttpContext.Request.Scheme}://{_baseHost}/shorturl/{code}", 
 					CreatedDate = DateTime.UtcNow,
 					UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) 
 				};

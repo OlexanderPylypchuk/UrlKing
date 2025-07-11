@@ -8,7 +8,7 @@ namespace UrlKing.Server.Services.IServices
 		Task<UserDto> GetUserAsync(string username);
 		bool IsUniqueUser(string username);
 		Task<TokenDto> Login(LoginRequestDto loginRequestDto);
-		Task<UserDto> Register(RegistrationRequestDto registrationRequestDto);
+		Task<TokenDto> Register(RegistrationRequestDto registrationRequestDto);
 		Task<UserDto> AssignUserToRole(RegistrationRequestDto registrationRequestDto);
 	}
 }
